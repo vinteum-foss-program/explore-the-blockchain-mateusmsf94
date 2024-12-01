@@ -9,5 +9,8 @@ descriptor="tr([00000000/0]$xpub/100)"
 # First get the descriptor with checksum
 descriptor_with_checksum=$(bitcoin-cli getdescriptorinfo "$descriptor" | jq -r '.descriptor')
 
-# Use bitcoin-cli's deriveaddresses to get the taproot address
-bitcoin-cli deriveaddresses "$descriptor_with_checksum"
+# Use bitcoin-cli's deriveaddresses to get the taproot address and format the output
+address=$(bitcoin-cli deriveaddresses "$descriptor_with_checksum" | jq -r '.[0]')
+
+# Print the address
+echo "$address"
