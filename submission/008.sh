@@ -9,4 +9,4 @@ decoded_tx=$(bitcoin-cli decoderawtransaction $raw_tx)
 # Extract the public key from the txinwitness field of input 0
 public_key=$(echo $decoded_tx | jq -r '.vin[0].txinwitness[-1]')
 
-echo $public_key"
+echo $public_key
